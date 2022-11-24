@@ -23,6 +23,7 @@ const getData = () => {
     (c) => c.name.common === query.value
   );
   search.value = true;
+  filter.value = false;
   query.value = "";
 };
 
