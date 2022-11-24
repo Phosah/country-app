@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "../pages/HomePage.vue";
-import CountryPage from "../pages/CountryPage.vue";
+import CountryDetailsPage from "../pages/CountryDetailsPage.vue";
 import PageNotFound from "../pages/PageNotFound.vue";
 
 const routes = [
   { path: "/", name: "home", component: HomePage },
-  { path: "/country/:idd", name: "country", component: CountryPage },
+  { path: "/country/:id", name: "country", component: CountryDetailsPage },
   {
     path: "/:catchAll(.*)*",
     name: "PageNotFound",
