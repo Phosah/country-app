@@ -5,7 +5,7 @@ import PageNotFound from "../pages/PageNotFound.vue";
 
 const routes = [
   { path: "/", name: "home", component: HomePage },
-  { path: "/country", name: "country", component: CountryPage },
+  { path: "/country/:idd", name: "country", component: CountryPage },
   {
     path: "/:catchAll(.*)*",
     name: "PageNotFound",
