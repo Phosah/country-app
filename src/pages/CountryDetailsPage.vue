@@ -1,8 +1,11 @@
 <script setup>
 import { ref, onBeforeMount } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
 
 const country = ref(null);
+const router = useRouter();
+const route = useRoute();
 const { id } = route.params;
 
 onBeforeMount(() => {
@@ -13,6 +16,25 @@ onBeforeMount(() => {
 </script>
 
 <template>
+  <div
+    class="w-24 flex items-center space-x-3 px-3 py-2 ml-6 border border-gray-400 rounded-md"
+  >
+    <svg
+      class="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M7 16l-4-4m0 0l4-4m-4 4h18"
+      ></path>
+    </svg>
+    <button class="" @click="router.back()">Back</button>
+  </div>
   <div class="mt-10 px-6 grid sm:grid-cols-2 gap-6">
     <div class="mb-3 h-72 bg-red-100">
       <img
@@ -28,7 +50,7 @@ onBeforeMount(() => {
         <p class="mb-1">Population: {{ country.population }}</p>
         <p class="mb-1">Region: {{ country.region }}</p>
         <p class="mb-1">Sub Region: {{ country.subregion }}</p>
-        <p class="mb-4">Capital: {{ country.capital }}</p>
+        <p class="mb-12">Capital: {{ country.capital }}</p>
         <div class="flex items-center space-x-3">
           <div v-for="border in country.borders">
             <div class="px-3 py-2 border border-gray-400 shadow-md">
