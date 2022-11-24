@@ -12,7 +12,7 @@ import Country from "../components/Country.vue";
     </div>
     <div class="flex align-items-center justify-between my-4 px-6">
       <!-- <SearchBar /> -->
-      <Filter />
+      <!-- <Filter /> -->
     </div>
     <div class="px-6">
       <Country />

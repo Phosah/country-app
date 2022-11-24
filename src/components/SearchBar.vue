@@ -1,21 +1,7 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import axios from "axios";
+import { ref } from "vue";
 
 const query = ref("");
-const data = ref([]);
-
-onMounted(async () => {
-  const getData = await axios
-    .get(`https://restcountries.com/v3.1/name/${query}`)
-    .then((res) => {
-      data.value = res.data;
-      console.log(data.value);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-});
 </script>
 
 <template>
