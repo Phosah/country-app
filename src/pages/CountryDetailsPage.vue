@@ -43,7 +43,7 @@ onBeforeMount(() => {
         :alt="country.name.common"
       />
     </div>
-    <div class="flex items-center justify-center px-2">
+    <div class="flex items-center justify-center mb-4 px-2">
       <div>
         <h2 class="mb-3 text-bold text-2xl">{{ country.name.official }}</h2>
         <p class="mb-1">Native name: {{ country.name.common }}</p>

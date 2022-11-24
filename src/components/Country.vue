@@ -23,6 +23,7 @@ const getData = () => {
     (c) => c.name.common === query.value
   );
   search.value = true;
+  query.value = "";
 };
 
 const getRegion = () => {
@@ -30,6 +31,7 @@ const getRegion = () => {
     (c) => c.region === region.value
   );
   filter.value = true;
+  region.value = "";
 };
 </script>
 
