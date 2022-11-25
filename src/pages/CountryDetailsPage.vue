@@ -53,7 +53,10 @@ onBeforeMount(() => {
         <p class="mb-12">Capital: {{ country.capital }}</p>
         <div class="flex items-center space-x-3">
           <div v-for="border in country.borders">
-            <div class="px-3 py-2 border border-gray-400 shadow-md">
+            <div
+              @click="router.push(`/country/${border}`)"
+              class="px-3 py-2 border border-gray-400 shadow-md cursor-pointer"
+            >
               {{ border }}
             </div>
           </div>

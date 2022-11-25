@@ -8,19 +8,21 @@ const router = useRouter();
 const query = ref(null);
 const filteredCountries = ref(null);
 const search = ref(false);
-const region = ref(null);
 const filteredRegions = ref(null);
 const filter = ref(false);
+
+const regions = ["Africa", "Europe", "Asia", "Americas", "Oceania"];
 
 onMounted(async () => {
   await axios.get("https://restcountries.com/v3.1/all").then((res) => {
     countries.value = res.data;
+    // console.log(countries.value);
   });
 });
 
 const getData = () => {
-  filteredCountries.value = countries.value.filter(
-    (c) => c.name.common === query.value
+  filteredCountries.value = countries.value.filter((c) =>
+    c.name.common.includes(query.value)
   );
   search.value = true;
   filter.value = false;
@@ -29,10 +31,9 @@ const getData = () => {
 
 const getRegion = () => {
   filteredRegions.value = countries.value.filter(
-    (c) => c.region === region.value
+    (c) => c.region === filteredRegions.value
   );
   filter.value = true;
-  region.value = "";
 };
 </script>
 
@@ -67,30 +68,20 @@ const getRegion = () => {
       </form>
     </div>
     <div>
-      <form @submit.prevent="getRegion">
+      <form @click="getRegion">
         <div
           class="flex align-items-center space-x-3 px-3 py-2 border border-gray-200 focus:border-blue-500 rounded-md"
         >
-          <input
-            v-model="region"
-            class="focus:outline-none w-full bg-transparent"
-            type="text"
-            placeholder="Filter"
-          />
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+          <select
+            name="region"
+            id="region"
+            class="focus:outline-none"
+            v-model="filteredRegions"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            ></path>
-          </svg>
+            <option v-for="region in regions" key="region" :value="region">
+              {{ region }}
+            </option>
+          </select>
         </div>
       </form>
     </div>
