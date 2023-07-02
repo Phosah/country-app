@@ -7,16 +7,17 @@ const countries = ref(null);
 const router = useRouter();
 const query = ref(null);
 const filteredCountries = ref(null);
-const search = ref(false);
 const filteredRegions = ref(null);
+const search = ref(false);
 const filter = ref(false);
+
+const selectedRegion = ref("");
 
 const regions = ["Africa", "Europe", "Asia", "Americas", "Oceania"];
 
 onMounted(async () => {
   await axios.get("https://restcountries.com/v3.1/all").then((res) => {
     countries.value = res.data;
-    // console.log(countries.value);
   });
 });
 
@@ -24,6 +25,7 @@ const getData = () => {
   filteredCountries.value = countries.value.filter((c) =>
     c.name.common.includes(query.value)
   );
+  console.log(filteredCountries.value);
   search.value = true;
   filter.value = false;
   query.value = "";
@@ -31,7 +33,7 @@ const getData = () => {
 
 const getRegion = () => {
   filteredRegions.value = countries.value.filter(
-    (c) => c.region === filteredRegions.value
+    (c) => c.region === selectedRegion.value
   );
   filter.value = true;
 };
@@ -75,10 +77,11 @@ const getRegion = () => {
           <select
             name="region"
             id="region"
-            class="focus:outline-none"
-            v-model="filteredRegions"
+            class="focus:outline-none text-black"
+            v-model="selectedRegion"
           >
-            <option v-for="region in regions" key="region" :value="region">
+            <option value="">Select Region</option>
+            <option v-for="region in regions" :key="region" :value="region">
               {{ region }}
             </option>
           </select>

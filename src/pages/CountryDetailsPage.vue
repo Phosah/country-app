@@ -7,10 +7,12 @@ const country = ref(null);
 const router = useRouter();
 const route = useRoute();
 const { id } = route.params;
+console.log(id);
 
 onBeforeMount(() => {
   axios.get("https://restcountries.com/v3.1/all").then((res) => {
     country.value = res.data.find((c) => c.cca2 == id);
+    console.log(country.value);
   });
 });
 </script>
