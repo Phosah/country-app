@@ -2,6 +2,7 @@
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
+import FancyButton from "../components/FancyButton.vue";
 
 const countries = ref(null);
 const router = useRouter();
@@ -81,13 +82,31 @@ const getRegion = () => {
             v-model="selectedRegion"
           >
             <option value="">Select Region</option>
-            <option v-for="region in regions" :key="region" :value="region">
+            <option v-for="region in regions" :key="region">
               {{ region }}
             </option>
           </select>
         </div>
       </form>
     </div>
+
+    <!-- Slot -->
+    <!-- <FancyButton
+      ><template #header>
+        <h1>Here might be a page title</h1>
+      </template>
+
+      <template #default>
+        <p>A paragraph for the main content.</p>
+        <p>And another one.</p>
+      </template>
+
+      <template #footer>
+        <p>Here's some contact info</p>
+      </template>
+
+      <template #button>Click me now</template>
+    </FancyButton> -->
   </div>
   <div
     class="py-6 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 rounded-md"
@@ -97,7 +116,7 @@ const getRegion = () => {
       v-for="country in filteredRegions"
       @click="router.push(`/country/${country.cca2}`)"
     >
-      <div class="pb-4 bg-white rounded-md shadow-lg">
+      <div class="pb-4 bg-white rounded-md shadow-lg cursor-pointer">
         <div class="mb-3 h-36 bg-red-100">
           <img
             class="w-full h-full"
@@ -118,7 +137,7 @@ const getRegion = () => {
       v-for="country in countries"
       @click="router.push(`/country/${country.cca2}`)"
     >
-      <div class="pb-4 bg-white rounded-md shadow-lg">
+      <div class="pb-4 bg-white rounded-md shadow-lg cursor-pointer">
         <div class="mb-3 h-36 bg-red-100">
           <img
             class="w-full h-full"

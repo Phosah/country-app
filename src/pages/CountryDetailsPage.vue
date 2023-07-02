@@ -2,6 +2,7 @@
 import { ref, onBeforeMount } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
+import FancyButton from "../components/FancyButton.vue";
 
 const country = ref(null);
 const router = useRouter();
@@ -19,7 +20,8 @@ onBeforeMount(() => {
 
 <template>
   <div
-    class="w-24 flex items-center space-x-3 px-3 py-2 ml-6 border border-gray-400 rounded-md"
+    @click="router.back()"
+    class="w-24 flex items-center space-x-3 px-3 py-2 ml-6 border border-gray-400 rounded-md cursor-pointer"
   >
     <svg
       class="w-6 h-6"
@@ -35,7 +37,7 @@ onBeforeMount(() => {
         d="M7 16l-4-4m0 0l4-4m-4 4h18"
       ></path>
     </svg>
-    <button class="" @click="router.back()">Back</button>
+    <button>Back</button>
   </div>
   <div class="mt-10 px-6 grid sm:grid-cols-2 gap-6">
     <div class="mb-3 h-72 bg-red-100">
